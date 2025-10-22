@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: ce5a5963fd69b9746ab74fba5b30e1b7
+  productGUID: db32abc73ca154744bf5fce58f2601cf
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Maze Of Echoes
+  productName: Maze-Of-Echoes
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -842,14 +842,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Maze Of Echoes
+  metroPackageName: Maze-Of-Echoes
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Maze Of Echoes
+  metroApplicationDescription: Maze-Of-Echoes
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -920,11 +920,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: f953d08b-5cf7-4f8d-9e03-b755a945f89e
+  cloudProjectId: 6b6f54ed-9008-4687-aa3e-67281f9e74af
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Maze Of Echoes
-  organizationId: sahar22
+  projectName: Maze-Of-Echoes
+  organizationId: naila_20
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

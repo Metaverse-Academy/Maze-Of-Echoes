@@ -37,8 +37,9 @@ public class DoorAutoOpen : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isOpening)
         {
-            Debug.Log("Player touched the door! Rotating to open...");
+
             isOpening = true;
+            Debug.Log("Player touched the door! Rotating to open...");
         }
     }
 
