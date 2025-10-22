@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -6,6 +8,8 @@ using System.Collections;
 
 public class FlashlightToggleSendMessage : MonoBehaviour
 {
+    public static Action<bool> OnFlashLightClick;
+
     [Header("Flashlight")]
     [SerializeField] private GameObject flashlight;          // child with Light component
     [SerializeField] private AudioSource clickAudio;         // optional: normal toggle sound
@@ -77,6 +81,8 @@ public class FlashlightToggleSendMessage : MonoBehaviour
             SetFlashlight(true);
             Play(clickAudio);
         }
+
+        OnFlashLightClick?.Invoke(isOn);
     }
 
     private void SetFlashlight(bool on)

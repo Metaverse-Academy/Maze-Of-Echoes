@@ -19,7 +19,8 @@ public class MonsterRandomSpawn : MonoBehaviour
     public float normalSpeed = 5f;           // السرعة العادية
 
     [Header("References")]
-    public Transform player;                 // مرجع اللاعب
+    public Transform player;
+    public HealthDamage PlayerHP;             // مرجع اللاعب
     [SerializeField] private Renderer monsterRenderer;
 
     // ...added fields...
@@ -35,6 +36,8 @@ public class MonsterRandomSpawn : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        FlashlightToggleSendMessage.OnFlashLightClick += OnFlashLightClick;
 
         // إذا لم يتم تعيين اللاعب، ابحث عنه
         if (player == null)
@@ -60,6 +63,14 @@ public class MonsterRandomSpawn : MonoBehaviour
 
         // بدء روتين الظهور العشوائي
         spawnRoutine = StartCoroutine(RandomSpawnRoutine());
+    }
+
+    private void OnFlashLightClick(bool isOn)
+    {
+        if (isOn)
+        {
+            StartChasing();
+        }
     }
 
     void Update()
@@ -191,6 +202,7 @@ public class MonsterRandomSpawn : MonoBehaviour
         {
             // Reached the player — stop chasing (you can replace this with attack logic)
             StopChasing();
+            PlayerHP.TakeDamage(100);
         }
     }
 
