@@ -8,8 +8,8 @@ using System.Collections;
 
 public class FlashlightToggleSendMessage : MonoBehaviour
 {
+    public static Action<bool> OnFlashLightClick;
 
-    public static Action<bool>OnFlashlightClick;
     [Header("Flashlight")]
     [SerializeField] private GameObject flashlight;          // child with Light component
     [SerializeField] private AudioSource clickAudio;         // optional: normal toggle sound
@@ -81,7 +81,8 @@ public class FlashlightToggleSendMessage : MonoBehaviour
             SetFlashlight(true);
             Play(clickAudio);
         }
-        OnFlashlightClick?.Invoke(isOn);
+
+        OnFlashLightClick?.Invoke(isOn);
     }
 
     private void SetFlashlight(bool on)
