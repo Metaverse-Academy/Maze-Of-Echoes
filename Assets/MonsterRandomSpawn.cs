@@ -62,6 +62,18 @@ public class MonsterRandomSpawn : MonoBehaviour
         spawnRoutine = StartCoroutine(RandomSpawnRoutine());
     }
 
+    private void OnFlashLightClick(bool isOn)
+    {
+        // يمكن استخدام هذا الحدث لإيقاف الوحش مؤقتًا إذا كانت المصباح قيد التشغيل
+        if (isOn)
+        {
+            // إيقاف المطاردة إذا كانت المصباح قيد التشغيل
+           
+                StartChasing();
+            }
+        }
+    
+
     void Update()
     {
         if (player == null) return;
