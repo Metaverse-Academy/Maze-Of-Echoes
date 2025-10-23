@@ -32,6 +32,7 @@ public class MonsterRandomSpawn : MonoBehaviour
     private Animator animator;
     private bool isChasing = false;
     private Coroutine spawnRoutine;
+    private float distanceToPlayer;
 
     void Start()
     {
@@ -69,6 +70,7 @@ public class MonsterRandomSpawn : MonoBehaviour
     {
         if (isOn)
         {
+             if (distanceToPlayer <= chaseRange && monsterRenderer.enabled && !isChasing)
             StartChasing();
         }
     }
@@ -78,7 +80,7 @@ public class MonsterRandomSpawn : MonoBehaviour
         if (player == null) return;
 
         // حساب المسافة بين الوحش واللاعب
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+         distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // التحقق من دخول اللاعب في مدى المطاردة
         if (distanceToPlayer <= chaseRange && monsterRenderer.enabled && !isChasing)
