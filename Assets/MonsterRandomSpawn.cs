@@ -38,7 +38,7 @@ public class MonsterRandomSpawn : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        FlashlightToggleSendMessage.OnFlashLightClick += OnFlashLightClick;
+       //FlashlightToggleSendMessage.OnFlashLightClick += OnFlashLightClick;
 
         // إذا لم يتم تعيين اللاعب، ابحث عنه
         if (player == null)

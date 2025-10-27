@@ -1,114 +1,64 @@
 using UnityEngine;
-using System;
-
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
-using System.Collections;
 
 public class FlashlightToggleSendMessage : MonoBehaviour
 {
-    public static Action<bool> OnFlashLightClick;
+    [Header("Flashlight Root (model stays visible)")]
+    [SerializeField] private GameObject flashlightRoot;   // the picked-up flashlight object (mesh stays ON)
 
-    [Header("Flashlight")]
-    [SerializeField] private GameObject flashlight;          // child with Light component
-    [SerializeField] private AudioSource clickAudio;         // optional: normal toggle sound
-    [SerializeField] private AudioSource scareAudio;         // optional: plays on the blocked (5th) attempt
-
-    [Header("Twist Settings")]
-    [Tooltip("Allow turning OFF this many times before the next OFF is blocked.")]
-    [SerializeField] private int allowedOffsBeforeBlock = 4;
-
-    [Tooltip("Optional small fake flicker on the blocked attempt, but end ON.")]
-    [SerializeField] private bool flickerOnBlockedAttempt = true;
-
-    [Tooltip("Total time for the fake flicker (if enabled).")]
-    [SerializeField] private float flickerDuration = 0.35f;
+    [Header("What to toggle")]
+    [SerializeField] private Light[] lights;              // auto-filled if left empty
+    [SerializeField] private GameObject[] beamVisuals;    // optional: meshes/particles for the beam (enable with light)
+    [SerializeField] private AudioSource clickAudio;      // optional
 
     private bool isOn = false;
-    private int offAttemptsSinceReset = 0;
-
 #if ENABLE_INPUT_SYSTEM
-    private bool _pressed; // edge detection for Send Messages
+    private bool _pressed;
 #endif
 
     void Awake()
     {
-        if (flashlight != null) flashlight.SetActive(false);
-        isOn = false;
-        offAttemptsSinceReset = 0;
+        if (flashlightRoot == null) flashlightRoot = gameObject; // safe default
+        if (lights == null || lights.Length == 0)
+            lights = flashlightRoot.GetComponentsInChildren<Light>(true);
+
+        SetState(false); // start OFF (model still visible)
+    }
+
+    // Call this after pickup to bind the newly picked flashlight
+    public void BindFlashlight(GameObject newRoot, bool startOn = false)
+    {
+        flashlightRoot = newRoot;
+        lights = flashlightRoot.GetComponentsInChildren<Light>(true);
+        SetState(startOn);
     }
 
 #if ENABLE_INPUT_SYSTEM
-    // Called by PlayerInput (Behavior = Send Messages) for an action named "Flashlight"
-    public void OnFlashlight(InputValue value)
+    // PlayerInput (Send Messages) action named "Flashlight"
+    public void OnFlashlight(InputValue v)
     {
-        bool pressed = value.isPressed;
-        if (pressed && !_pressed)
-            HandlePress();
+        bool pressed = v.isPressed;
+        if (pressed && !_pressed) Toggle();
         _pressed = pressed;
     }
 #endif
 
-    private void HandlePress()
+    public void Toggle()
     {
-        if (flashlight == null) return;
-
-        if (isOn)
-        {
-            // Player is trying to turn it OFF
-            offAttemptsSinceReset++;
-
-            if (offAttemptsSinceReset <= allowedOffsBeforeBlock)
-            {
-                // Allowed OFF
-                SetFlashlight(false);
-                Play(clickAudio);
-            }
-            else
-            {
-                // Block this OFF (the scare)
-                offAttemptsSinceReset = 0; // reset sequence
-                // Stay ON, maybe do a quick fake flicker
-                if (flickerOnBlockedAttempt)
-                    StartCoroutine(FakeFlicker());
-                Play(scareAudio);
-            }
-        }
-        else
-        {
-            // Turning it ON is always allowed
-            SetFlashlight(true);
-            Play(clickAudio);
-        }
-
-        OnFlashLightClick?.Invoke(isOn);
+        isOn = !isOn;
+        SetState(isOn);
+        if (clickAudio) clickAudio.Play();
     }
 
-    private void SetFlashlight(bool on)
+    private void SetState(bool on)
     {
-        isOn = on;
-        flashlight.SetActive(on);
-    }
+        // NEVER SetActive(false) on the flashlightRoot — keep the mesh visible
+        if (lights != null)
+            foreach (var l in lights) if (l) l.enabled = on;
 
-    private void Play(AudioSource src)
-    {
-        if (src != null) src.Play();
-    }
-
-    private IEnumerator FakeFlicker()
-    {
-        // brief: off-on-off-on ending ON
-        float t = 0f;
-        while (t < flickerDuration)
-        {
-            flashlight.SetActive(false);
-            yield return new WaitForSeconds(0.06f);
-            flashlight.SetActive(true);
-            yield return new WaitForSeconds(0.07f);
-            t += 0.13f;
-        }
-        flashlight.SetActive(true); // ensure it ends ON
-        isOn = true;
+        if (beamVisuals != null)
+            foreach (var go in beamVisuals) if (go) go.SetActive(on);
     }
 }
