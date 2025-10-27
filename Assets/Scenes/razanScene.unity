@@ -6704,14 +6704,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1451196810, guid: bcd8460f531e0304884ad21a92112ad5, type: 3}
+  m_Sprite: {fileID: -418415466, guid: 61992afe7665bde46a0b3bf59dfaf86e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11573,12 +11573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61f370041f9a3c4abab30632bee7765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightToggle
-  flashlight: {fileID: 0}
+  flashlightRoot: {fileID: 0}
+  lights: []
+  beamVisuals: []
   clickAudio: {fileID: 0}
-  scareAudio: {fileID: 0}
-  allowedOffsBeforeBlock: 4
-  flickerOnBlockedAttempt: 1
-  flickerDuration: 0.35
 --- !u!114 &1838304386 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
