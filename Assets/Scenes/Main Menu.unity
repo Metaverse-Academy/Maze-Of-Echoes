@@ -11404,10 +11404,10 @@ MonoBehaviour:
   sfx: {fileID: 0}
   clickOn: {fileID: 0}
   clickOff: {fileID: 0}
-  flickerClick: {fileID: 0}
+  flickerClick: {fileID: 8300000, guid: 98c866256f3a530428987f1d95030127, type: 3}
   volOn: 1
   volOff: 1
-  volFlick: 0.7
+  volFlick: 0.188
   randomizePitch: 1
   pitchRange: {x: 0.96, y: 1.04}
 --- !u!1 &2009175188
