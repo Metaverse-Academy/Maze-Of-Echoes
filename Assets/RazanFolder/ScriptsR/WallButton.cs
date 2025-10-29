@@ -25,13 +25,9 @@ public class WallButton : MonoBehaviour
     [SerializeField] private AnimationCurve wallCurve = null;  // leave null = smoothstep
     [SerializeField] private bool useUnscaledTime = true;
 
-    [Header("Movement Audio")]
-    [Tooltip("AudioSource placed on the WALL (or nearby). Will loop while sliding.")]
-    [SerializeField] private AudioSource moveAudio;        // loop/continuous sound
-    [SerializeField] private AudioClip moveStart;          // optional one-shot at start
-    [SerializeField] private AudioClip moveLoop;           // optional loop clip (set on AudioSource if left null)
-    [SerializeField] private AudioClip moveStop;           // optional one-shot at end
-    [SerializeField, Range(0,1)] private float moveVolume = 1f;
+    [Header("Movement Audio (simple)")]
+    [Tooltip("Assign an AudioSource with your looping motor/slide clip. It will Play() at move start and Stop() at move end.")]
+    [SerializeField] private AudioSource moveAudio;        // must have a clip assigned in Inspector
 
     [Header("One-shot / cooldown")]
     [SerializeField] private bool oneShot = true;
@@ -62,13 +58,13 @@ public class WallButton : MonoBehaviour
         if (wallCurve == null)
             wallCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-        // Prepare movement audio
+        // Prepare movement audio (keep it dead simple)
         if (moveAudio)
         {
-            moveAudio.loop = true;
             moveAudio.playOnAwake = false;
-            moveAudio.volume = moveVolume;
-            if (moveLoop) moveAudio.clip = moveLoop;
+            moveAudio.loop = true;           // ensure looping
+            moveAudio.dopplerLevel = 0f;     // optional: avoid weird pitch changes while moving
+            // IMPORTANT: assign a loop clip to moveAudio.clip in the Inspector
         }
     }
 
@@ -136,16 +132,9 @@ public class WallButton : MonoBehaviour
         if (wallRb && !wallRb.isKinematic)
             wallRb.isKinematic = true;
 
-        // --- AUDIO: start ---
-        if (moveAudio)
-        {
-            if (moveStart) moveAudio.PlayOneShot(moveStart, moveVolume);
-            // slight delay so start click doesn't get cut by loop
-            if (moveLoop && moveAudio.clip != moveLoop) moveAudio.clip = moveLoop;
-            moveAudio.volume = moveVolume;
-            moveAudio.loop = true;
+        // --- AUDIO: just start the loop now ---
+        if (moveAudio && moveAudio.clip)
             moveAudio.Play();
-        }
 
         // Move wall
         Vector3 a = wallStartPos;
@@ -165,12 +154,9 @@ public class WallButton : MonoBehaviour
         }
         if (wallRb) wallRb.MovePosition(b); else targetWall.position = b;
 
-        // --- AUDIO: stop cleanly at end ---
+        // --- AUDIO: stop exactly when movement ends ---
         if (moveAudio)
-        {
-            moveAudio.Stop();                   // stops loop immediately
-            if (moveStop) moveAudio.PlayOneShot(moveStop, moveVolume); // thump/chunk at end
-        }
+            moveAudio.Stop();
 
         if (!oneShot)
         {

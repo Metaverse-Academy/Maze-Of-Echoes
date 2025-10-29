@@ -542,9 +542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HintController
   hintPanel: {fileID: 1479885156}
-  interactUI: {fileID: 0}
+  interactUI: {fileID: 1989790291}
   player: {fileID: 1838304399}
-  interactionDistance: 15
+  interactionDistance: 10
 --- !u!1001 &65187833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1588,6 +1588,10 @@ PrefabInstance:
       propertyPath: m_NotificationBehavior
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5597113867290821413, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2616,7 +2620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4
+      value: 10.837
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2624,23 +2628,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.458
+      value: 15.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2648,7 +2652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6519aa5c929b89743bf50c8f961ff88c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -3558,8 +3562,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20.48, y: 20.48, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 20.48, y: 20.48, z: 0.104708366}
+  m_Center: {x: 0, y: 0, z: -0.047645833}
 --- !u!212 &614211719
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5016,7 +5020,7 @@ GameObject:
   - component: {fileID: 762228875}
   - component: {fileID: 762228874}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5042,7 +5046,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E
+  m_text: Press (E)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5137,7 +5141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -35.49}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &770154789
@@ -5398,7 +5402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836591373}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.24871814, z: -0.014567375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6943,7 +6947,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7397,14 +7401,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallButton
   playerTag: Player
   promptUI: {fileID: 762228873}
-  interactDistance: 3
+  interactDistance: 5
   pressablePart: {fileID: 204133533}
   pressDepth: 10
   pressSpeed: 10
   pressSfx: {fileID: 1700174872}
   targetWall: {fileID: 1137651380}
   wallMoveOffset: {x: 19, y: 0, z: 0}
-  wallMoveTime: 1
+  wallMoveTime: 3
   wallCurve:
     serializedVersion: 2
     m_Curve:
@@ -7431,11 +7435,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   useUnscaledTime: 1
   moveAudio: {fileID: 1107432825}
-  moveStart: {fileID: 8300000, guid: 2b859590f22a8fd47b1d214ab93b052c, type: 3}
-  moveLoop: {fileID: 8300000, guid: 2b859590f22a8fd47b1d214ab93b052c, type: 3}
-  moveStop: {fileID: 0}
-  moveVolume: 1
-  oneShot: 1
+  oneShot: 0
   cooldown: 1
 --- !u!65 &1151070925
 BoxCollider:
