@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HintController
   hintPanel: {fileID: 1479885156}
-  interactUI: {fileID: 1989790291}
+  interactUI: {fileID: 0}
   player: {fileID: 1838304399}
   interactionDistance: 10
 --- !u!1001 &65187833
